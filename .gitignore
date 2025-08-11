@@ -1,9 +1,15 @@
+# Package files
+elpa/
+eln-cache/
 auto-save-list/
 backups/
-eln-cache/
-elpa/
-transient/
 
+# Compiled files
+*.elc
+
+# Backup files
 *~
 \#*\#
 
+# Other config directories (if they exist)
+.config/
