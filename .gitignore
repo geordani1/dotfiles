@@ -13,3 +13,4 @@ backups/
 
 # Other config directories (if they exist)
 .config/
+*~
