@@ -1,0 +1,41 @@
+(menu-bar-mode -1)
+(tool-bar-mode -1)
+(scroll-bar-mode -1)
+(setq inhibit-startup-screen t)
+(require 'package)
+(setq package-archives '(("melpa" . "https://melpa.org/packages/")
+                         ("gnu" . "https://elpa.gnu.org/packages/")))
+(package-initialize)
+
+(unless (package-installed-p 'use-package)
+  (package-refresh-contents)
+  (package-install 'use-package))
+
+(use-package markdown-mode
+  :ensure t
+  :mode ("\\.md\\'" . markdown-mode)  ; Auto-detectar archivos .md
+  :hook (markdown-mode . visual-line-mode)  ; Ajuste de líneas
+  :config
+  (setq markdown-command "pandoc"))  ; Opcional: usar Pandoc para exportar
+
+
+(use-package company
+  :ensure t
+  :hook (after-init . global-company-mode)  ; Activar en todo Emacs
+  :custom
+  (company-idle-delay 0.3)      ; Tiempo antes de mostrar sugerencias
+  (company-minimum-prefix-length 2)  ; Mínimo de caracteres para activar
+  (company-show-quick-access t)  ; Atajos numéricos (1-9)
+  (company-tooltip-align-annotations t))  ; Alinear anotaciones
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages '(company markdown-mode)))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
